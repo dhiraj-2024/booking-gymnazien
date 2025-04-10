@@ -1,7 +1,10 @@
-require('dotenv').config(); // Must be at the top
-const mongoose = require('mongoose');
-const Accommodation = require('./models/Accommodation');
-const connectDB = require('./config/db');
+// seedData.js
+import dotenv from 'dotenv';
+dotenv.config(); // Must be at the top
+
+import mongoose from 'mongoose';
+import Accommodation from './models/Accommodation.js';
+import connectDB from './config/db.js';
 
 const seedData = async () => {
   try {
@@ -51,7 +54,6 @@ const seedData = async () => {
       ]
     });
 
-    // Save both
     await hostel.save();
     await hotel.save();
 

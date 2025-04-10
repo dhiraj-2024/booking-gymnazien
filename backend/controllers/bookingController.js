@@ -1,11 +1,11 @@
-const Booking = require("../models/Booking");
-const Accommodation = require("../models/Accommodation");
-const axios = require("axios");
-const ExcelJS = require('exceljs');
+import Booking from "../models/Booking.js";
+import Accommodation from "../models/Accommodation.js";
+import axios from "axios";
+import ExcelJS from "exceljs";
 
 
 
-const createBooking = async (req, res) => {
+export const createBooking = async (req, res) => {
   try {
     const {  //! teamName, memberDetails 
       name, teamType, state, mobileNumber, email,
@@ -98,7 +98,7 @@ const createBooking = async (req, res) => {
   }
 };
 
-const checkStatus = async (req, res) => {
+export const checkStatus = async (req, res) => {
   try {
     const { order_id } = req.params;
     // console.log(`Checking status for order: ${order_id}`);
@@ -185,7 +185,7 @@ const checkStatus = async (req, res) => {
   }
 };
 
-const getBookingDetails = async (req, res) => {
+export const getBookingDetails = async (req, res) => {
   try {
     const { order_id } = req.params;
     const booking = await Booking.findOne({ orderId: order_id });
@@ -201,7 +201,7 @@ const getBookingDetails = async (req, res) => {
   }
 };
 
-const updateRoomAvailability = async (req, res) => {
+export const updateRoomAvailability = async (req, res) => {
   try {
     const { id } = req.params;
     const { roomsBooked } = req.body;
@@ -235,7 +235,7 @@ const updateRoomAvailability = async (req, res) => {
   }
 };
 
-const excelExport = async (req, res) => {
+export const excelExport = async (req, res) => {
   try {
     // Fetch all bookings from database
     const bookings = await Booking.find({});
@@ -310,10 +310,10 @@ const excelExport = async (req, res) => {
   }
 };
 
-module.exports = {
-  createBooking,
-  checkStatus,
-  getBookingDetails,
-  updateRoomAvailability,
-  excelExport
-};
+// module.exports = {
+//   createBooking,
+//   checkStatus,
+//   getBookingDetails,
+//   updateRoomAvailability,
+//   excelExport
+// };

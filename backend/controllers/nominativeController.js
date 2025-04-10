@@ -1,8 +1,8 @@
 // backend/controllers/nominativeController.js
-const Nominative = require("../models/Nominative");
-const axios = require("axios");
+import Nominative from "../models/Nominative.js"
+import axios from "axios"
 
-const createNominativeEntry = async (req, res) => {
+export const createNominativeEntry = async (req, res) => {
   try {
     const { 
       name, role, state, mobileNumber,dateOfBirth,registrationFee    // email, teamName removed
@@ -84,7 +84,7 @@ const createNominativeEntry = async (req, res) => {
   }
 };
 
-const checkNominativeStatus = async (req, res) => {
+export const checkNominativeStatus = async (req, res) => {
   try {
     const { order_id } = req.params;
 
@@ -118,7 +118,7 @@ const checkNominativeStatus = async (req, res) => {
   }
 };
 
-const getNominativeDetails = async (req, res) => {
+export const getNominativeDetails = async (req, res) => {
   try {
     const { order_id } = req.params;
     const nominative = await Nominative.findOne({ orderId: order_id });
@@ -134,8 +134,8 @@ const getNominativeDetails = async (req, res) => {
   }
 };
 
-module.exports = {
-  createNominativeEntry,
-  checkNominativeStatus,
-  getNominativeDetails
-};
+// module.exports = {
+//   createNominativeEntry,
+//   checkNominativeStatus,
+//   getNominativeDetails
+// };
