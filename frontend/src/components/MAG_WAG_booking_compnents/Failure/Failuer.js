@@ -19,7 +19,7 @@ const Failure = () => {
       return;
     }
 
-    axios.get(`http://localhost:8888/api/booking/${orderId}`)
+    axios.get(`/api/booking/${orderId}`)
       .then(response => {
         setBookingDetails(response.data);
         setLoading(false);

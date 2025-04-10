@@ -5,7 +5,7 @@ import './Exportexcle.css';
 const ExportBookings = () => {
   const handleExport = async () => {
     try {
-      const response = await axios.get('http://localhost:8888/api/bookings/export-bookings', {
+      const response = await axios.get('/api/bookings/export-bookings', {
         responseType: 'blob',
       });
 

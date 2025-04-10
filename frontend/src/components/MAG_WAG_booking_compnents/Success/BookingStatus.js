@@ -10,7 +10,7 @@ const BookingStatus = () => {
   useEffect(() => {
     const checkPaymentStatus = async () => {
       try {
-        const response = await fetch(`http://localhost:8888/api/bookings/status/${orderId}`);
+        const response = await fetch(`/api/bookings/status/${orderId}`);
         if (response.redirected) {
           window.location.href = response.url; // Follow the backend redirect
         } else {

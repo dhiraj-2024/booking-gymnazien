@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchAccommodations = async () => {
       try {
-        const response = await fetch('http://localhost:8888/api/accommodations');
+        const response = await fetch('/api/accommodations');
         if (!response.ok) {
           throw new Error('Failed to fetch accommodations');
         }

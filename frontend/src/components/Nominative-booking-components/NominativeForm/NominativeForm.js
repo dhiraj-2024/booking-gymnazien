@@ -69,7 +69,7 @@ const NominativeForm = () => {
     e.preventDefault();
 
     try {
-      const endpoint = "http://localhost:8888/api/nominative/";
+      const endpoint = "/api/nominative/";
       const payload = {
         ...formData,
         // Ensure all required fields are included
@@ -105,7 +105,7 @@ const NominativeForm = () => {
         if (data.success && data.sessionId) {
           let checkoutOptions = {
             paymentSessionId: data.sessionId,
-            returnUrl: `http://localhost:8888/api/nominative/status/${data.order_id}`,
+            returnUrl: `/api/nominative/status/${data.order_id}`,
           };
           cashfree.checkout(checkoutOptions);
         } else {

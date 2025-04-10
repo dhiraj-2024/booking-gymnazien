@@ -16,7 +16,7 @@ export const BookingStatus = () => {
         return;
       }
   
-      axios.get(`http://localhost:8888/api/bookings/booking/${orderId}`)
+      axios.get(`/api/bookings/booking/${orderId}`)
         .then(response => {
           setBookingDetails(response.data);
           setLoading(false);

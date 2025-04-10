@@ -5,7 +5,7 @@ import './Exportexcle.css';
 const ExportInternationalAthletes = () => {
   const handleExport = async () => {
     try {
-      const response = await axios.get("http://localhost:8888/api/international-athletes/export/excel", {
+      const response = await axios.get("/api/international-athletes/export/excel", {
         responseType: 'blob',
         withCredentials: true,
       });

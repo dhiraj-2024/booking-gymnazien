@@ -22,7 +22,7 @@ useEffect(() => {
     try {
       // First get booking details
       const bookingResponse = await axios.get(
-        `http://localhost:8888/api/international-athletes/${orderId}`
+        `/api/international-athletes/${orderId}`
       );
       
       if (bookingResponse.data.success) {
@@ -30,7 +30,7 @@ useEffect(() => {
         
         // Then refresh hotel data
         const hotelResponse = await axios.get(
-          `http://localhost:8888/api/accommodations/${bookingResponse.data.data.hotelId}`
+          `/api/accommodations/${bookingResponse.data.data.hotelId}`
         );
         
         // You can update your global state here if needed
