@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-// import path from 'path';
-// import { fileURLToPath } from 'url';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import connectDB from './config/db.js';
 import bookingRoutes from './routes/bookingRoutes.js';
@@ -16,10 +16,7 @@ dotenv.config();
 // Connect to MongoDB
 connectDB();
 
-// __dirname workaround in ESM
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
+const __dirname = path.resolve();
 const app = express();
 
 // CORS Configuration
@@ -42,9 +39,12 @@ app.use('/api/nominative', nominativeRoutes);
 app.use('/api/international-athletes', internationalAthleteRoutes);
 app.use('/api/accommodations', accommodationRoutes);
 
-// Simple Routes
-app.get('/', (req, res) => res.send('Hello World dhiraj'));
-app.get('/about', (req, res) => res.send('About route 🎉'));
+// Serve frontend
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 
 // Error Handler
 app.use((err, req, res, next) => {
@@ -52,14 +52,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Something broke!' });
 });
 
-// Serve static files in production
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-//   });
-// }
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
+
 
 // Start Server
 app.listen(process.env.PORT, () => {
