@@ -43,11 +43,12 @@ app.use((err, req, res, next) => {
 });
 
 // Serve frontend
-app.use(express.static(path.join(rootDir, "/frontend/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(rootDir, "frontend", "build", "index.html"));
-});
+// Serve static files from frontend/build
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 
 // Start Server
 app.listen(process.env.PORT, () => {
