@@ -15,3 +15,6 @@ backend/data
 
 # Mac system files
 .DS_Store
+
+# Editor settings
+.vscode/
