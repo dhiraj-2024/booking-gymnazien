@@ -11,7 +11,7 @@ const path = require('path');
 // Connect to MongoDB
 connectDB();
 
-const rootDir = path.resolve();
+const __dirname = path.resolve();
 const app = express();
 
 // CORS Configuration
