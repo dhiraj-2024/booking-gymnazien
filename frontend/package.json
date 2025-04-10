@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8888", 
   "dependencies": {
     "@cashfreepayments/cashfree-js": "^1.0.5",
     "@testing-library/dom": "^10.4.0",

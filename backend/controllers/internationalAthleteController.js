@@ -1,10 +1,10 @@
-const Accommodation = require("../models/Accommodation");
-const InternationalAthlete = require("../models/InternationalAthlete");
-const axios = require("axios");
-const ExcelJS = require('exceljs');
+import Accommodation from"../models/Accommodation.js"
+import InternationalAthlete from"../models/InternationalAthlete.js"
+import axios from"axios"
+import ExcelJS from'exceljs'
 
 
-const createInternationalAthlete = async (req, res) => {
+export const createInternationalAthlete = async (req, res) => {
   try {
     // console.log("Incoming request body:", req.body);
 
@@ -156,7 +156,7 @@ const createInternationalAthlete = async (req, res) => {
   }
 };
 
-const checkStatus = async (req, res) => {
+export const checkStatus = async (req, res) => {
   try {
     const { order_id } = req.params;
     // console.log(`Checking payment status for order: ${order_id}`);
@@ -245,7 +245,7 @@ const checkStatus = async (req, res) => {
     );
   }
 };
-const getInternationalAthleteDetails = async (req, res) => {
+export const getInternationalAthleteDetails = async (req, res) => {
   const { order_id } = req.params;
 
   try {
@@ -323,7 +323,7 @@ const getInternationalAthleteDetails = async (req, res) => {
 //   }
 // };
 
-const updateRoomAvailability = async (req, res) => {
+export const updateRoomAvailability = async (req, res) => {
   try {
     const { id } = req.params;
     const { roomsBooked } = req.body;
@@ -364,7 +364,7 @@ const updateRoomAvailability = async (req, res) => {
   }
 };
 
-const exportInternationalAthletes = async (req, res) => {
+export const exportInternationalAthletes = async (req, res) => {
   try {
     console.log('Export endpoint accessed'); // Debug log
     
@@ -453,10 +453,10 @@ const exportInternationalAthletes = async (req, res) => {
     });
   }
 };
-module.exports = {
-  createInternationalAthlete,
-  checkStatus,
-  getInternationalAthleteDetails,
-  updateRoomAvailability,
-  exportInternationalAthletes
-};
+// module.exports = {
+//   createInternationalAthlete,
+//   checkStatus,
+//   getInternationalAthleteDetails,
+//   updateRoomAvailability,
+//   exportInternationalAthletes
+// };
