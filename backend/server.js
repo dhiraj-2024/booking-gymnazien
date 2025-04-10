@@ -6,7 +6,7 @@ const bookingRoutes = require("./routes/bookingRoutes.js");
 const nominativeRoutes = require("./routes/nominativeRoutes.js");
 const internationalAthleteRoutes = require("./routes/internationalAthleteRoutes.js");
 const accommodationRoutes = require('./routes/accommodationRoutes.js');
-const path = require('path');
+// const path = require('path');
 
 // Connect to MongoDB
 connectDB();
@@ -33,7 +33,7 @@ app.use("/api/international-athletes", internationalAthleteRoutes);
 app.use("/api/accommodations", accommodationRoutes);
 
 // Simple Routes
-// app.get('/', (req, res) => res.send('Hello World dhiraj'));
+app.get('/', (req, res) => res.send('Hello World dhiraj'));
 app.get('/about', (req, res) => res.send('About route 🎉'));
 
 // Error Handler
@@ -42,11 +42,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Something broke!' });
 });
 // Serve frontend
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+// });
 
 // Start Server
 app.listen(process.env.PORT, () => {
