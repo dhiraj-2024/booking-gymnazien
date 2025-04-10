@@ -11,7 +11,7 @@ const path = require('path');
 // Connect to MongoDB
 connectDB();
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 const app = express();
 
 // CORS Configuration
@@ -41,9 +41,7 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ success: false, message: 'Something broke!' });
 });
-
 // Serve frontend
-// Serve static files from frontend/build
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.get('*', (req, res) => {
