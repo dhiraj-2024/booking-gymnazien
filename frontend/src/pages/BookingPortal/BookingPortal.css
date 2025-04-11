@@ -2,15 +2,26 @@
   background-image: url("../../../public/assets/images/211.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgb(214, 255, 249);
+  background-color: rgb(0, 0, 0);
   min-height: 100vh;
   width: 100%;
   display: flex;
+
   flex-direction: column;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
 }
+.punelogo{
+height: 120px;
+  width: 180px;
+  padding-top: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../components/MAG_WAG_booking_compnents/imageall/punelogo.png');
+}
+
+
 
 .portal-hero {
   text-align: center;

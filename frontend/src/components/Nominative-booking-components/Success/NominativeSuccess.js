@@ -53,7 +53,7 @@ const NominativeSuccess = () => {
           <div className="order-details">
             <h3>Registration Details</h3>
             <div className="detail-row">
-              <span className="detail-label">Reference ID:</span>
+              <span className="detail-label">Registration Id:</span>
               <span className="detail-value">{orderDetails.orderId}</span>
             </div>
             <div className="detail-row">

@@ -24,7 +24,7 @@ const ExportBookings = () => {
 
   return (
     <div className="export-container">
-      <h2 className="export-title">Export All Bookings</h2>
+      <h2 className="export-title">Export All (MAG / WAG) Bookings</h2>
       <p className="export-desc">Click below to download the MAG / WAG booking data in Excel format.</p>
       <button onClick={handleExport} className="export-button">
         📥 Download Bookings (MAG / WAG)

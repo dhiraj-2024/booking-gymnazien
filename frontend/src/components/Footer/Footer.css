@@ -59,12 +59,12 @@
   
   .info-section p {
     font-size: 13px;
-    color: #cdff94;
+    color: #5f6b52;
     margin: 5px 0 0;
   }
   
   .website-link a {
-    color: #fff;
+    color: #c9737c;
     text-decoration: none;
     font-weight: bold;
   }
@@ -76,7 +76,7 @@
   .watermark {
     margin: 10px 0;
     font-size: 14px;
-    color: #aaa;
+    color: #575757;
     cursor: pointer;
     transition: color 0.3s;
   }

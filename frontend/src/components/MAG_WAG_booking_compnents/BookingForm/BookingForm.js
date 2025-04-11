@@ -45,6 +45,7 @@ const baseStates = State.getStatesOfCountry("IN").map((state) => ({
     { value: "Ladakh", label: "Ladakh" },
     { value: "Lakshadweep", label: "Lakshadweep" },
     { value: "Puducherry", label: "Puducherry" },
+    { value: "Other", label: "Other" },
   ];
     
   const indianStates = [...baseStates, ...additionalOptions];

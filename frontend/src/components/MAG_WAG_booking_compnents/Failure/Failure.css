@@ -16,10 +16,10 @@
   
   .error-message {
     color: #e74c3c;
-    font-size: 1.1rem;
+    font-size: 15px;
     margin-bottom: 2rem;
     padding: 1rem;
-    background-color: #fde8e8;
+    /* background-color: #fde8e8; */
     border-radius: 4px;
   }
   

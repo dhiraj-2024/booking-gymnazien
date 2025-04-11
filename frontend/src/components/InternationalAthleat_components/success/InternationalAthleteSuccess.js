@@ -55,16 +55,9 @@ useEffect(() => {
         <p>Loading booking details...</p>
       ) : bookingDetails ? (
         <div className="invoice">
-          <h3>Booking Invoice</h3>
           <div className="invoice-header">
-            <div className="company-details">
-              <p><strong>Gymnazien</strong></p>
-              <p>Mr. Shubham Rajput</p>
-              <p>Mobile: +91 93707 19213</p>
-              <p>Email: Pune2025.ART@gmail.com</p>
-            </div>
             <div className="invoice-meta">
-              <p><strong>Invoice Number:</strong> {orderId}</p>
+              <p><strong>Booking Number:</strong> {orderId}</p>
               <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
             </div>
           </div>
@@ -74,33 +67,10 @@ useEffect(() => {
             <p><strong>Type : </strong> {bookingDetails.hotelName}</p>
             <p><strong>Check-in Date :</strong> {bookingDetails.checkIn}</p>
             <p><strong>Check-out Date :</strong> {bookingDetails.checkOut}</p>
-            <p><strong>Total Rooms:</strong> {bookingDetails.totalRooms}</p>
-            <p><strong>Selected Members:</strong></p>
-            
-            {bookingDetails.memberDetails && bookingDetails.memberDetails.length > 0 ? (
-              <table className="members-table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Member Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {bookingDetails.memberDetails.map((member, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{member.name}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No members selected.</p>
-            )}
-
+            <p><strong>Stay Duration : </strong> {bookingDetails.stayDuration}</p>
             <p><strong>Total Price:</strong> ₹{bookingDetails.totalPrice}</p>
           </div>
-
+          <div className="Note">📄 Note: This invoice serves as your payment confirmation. Kindly keep a copy for future reference.</div>
           <button className="download-button" onClick={() => window.print()}>
             Download Invoice
           </button>

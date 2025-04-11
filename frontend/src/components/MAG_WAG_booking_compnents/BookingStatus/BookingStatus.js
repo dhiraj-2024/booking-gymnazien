@@ -50,14 +50,17 @@ export const BookingStatus = () => {
   
             <div className="invoice-details">
               <p><strong>Name:</strong> {bookingDetails.name}</p>
-              <p><strong>Team:</strong> {bookingDetails.teamName}</p>
+              <p><strong>Team:</strong> {bookingDetails.teamType}</p>
               <p><strong>State:</strong> {bookingDetails.state}</p>
+              <p><strong>Accommodation Type</strong> {bookingDetails.hotelName}</p>
               <p><strong>Check-in:</strong> {bookingDetails.checkIn}</p>
               <p><strong>Check-out:</strong> {bookingDetails.checkOut}</p>
-              <p><strong>Total Members:</strong> {bookingDetails.members}</p>
-              <p><strong>Selected Members:</strong></p>
+              <p><strong>Total Members:</strong> {bookingDetails.totalMembers}</p>
+              <p><strong>Type 1 Rooms:</strong> {bookingDetails.roomDetails.roomType1}</p>
+              <p><strong>Type 2 Rooms:</strong> {bookingDetails.roomDetails.roomType2}</p>
+              {/* <p><strong>Selected Members:</strong></p> */}
               
-              {bookingDetails.memberDetails && bookingDetails.memberDetails.length > 0 ? (
+              {/* {bookingDetails.memberDetails && bookingDetails.memberDetails.length > 0 ? (
                 <table className="members-table">
                   <thead>
                     <tr>
@@ -76,11 +79,11 @@ export const BookingStatus = () => {
                 </table>
               ) : (
                 <p>No members selected.</p>
-              )}
+              )} */}
   
               <p><strong>Total Price:</strong> ₹{bookingDetails.totalPrice}</p>
             </div>
-  
+            <div className="Note">📄 Note: This invoice serves as your payment confirmation. Kindly keep a copy for future reference.</div>
             <button className="download-button" onClick={() => window.print()}>
               Download Invoice
             </button>

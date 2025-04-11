@@ -132,6 +132,9 @@ background-color: black;
     .nominative-form {
       grid-template-columns: 1fr;
     }
+    .total-amount{
+      font-size: 22px;
+    }
     
     .price-summary,
     .submit-button {

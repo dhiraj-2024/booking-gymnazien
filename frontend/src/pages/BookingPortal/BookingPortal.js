@@ -35,6 +35,9 @@ const BookingPortal = () => {
   return (
 
      <div className="booking-portal-page">
+
+      <div className='punelogo'>
+      </div>
     
       <div className="portal-hero">
           <h1>Junior & Senior Artistic Gymnastics National Championships</h1>
