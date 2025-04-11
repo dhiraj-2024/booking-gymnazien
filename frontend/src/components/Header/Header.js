@@ -21,10 +21,10 @@ const Header = () => {
         <a href="/" style={styles.navLink}>
           Home
         </a>
-        <a href="/contact" style={styles.navLink}>
+        <a href="/contact-us" style={styles.navLink}>
           Contact us
         </a>
-        <a href="/terms" style={styles.navLink}>
+        <a href="/terms&conditions" style={styles.navLink}>
           T&C
         </a>
       </nav>

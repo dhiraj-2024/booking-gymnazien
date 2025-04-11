@@ -32,6 +32,9 @@ import InternationalAthleteForm from "./components/InternationalAthleat_componen
 import ExportBookings from "./components/ExcleExport/ExportBookings.js";
 
 import ExportInternationalAthletes from "./components/ExcleExport/ExportInternationalAthletes.js";
+import AboutUs from "./components/TempComponents/AboutUs.js";
+import PrivacyPolicy from "./components/TempComponents/PrivacyPolicy.js";
+import RefundPolicy from "./components/TempComponents/RefundPolicy.js";
 
 
 
@@ -47,8 +50,12 @@ const App = () => {
 
 
       {/* COMMONS COMPONENTS ROUTES */}
-      <Route path="/terms" element={<Layout><TermsAndConditions /></Layout>} />
-      <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
+      <Route path="/terms&conditions" element={<Layout><TermsAndConditions /></Layout>} />
+      <Route path="/contact-us" element={<Layout><ContactUs /></Layout>} />
+      <Route path="/about-us" element={<Layout><AboutUs /></Layout>} />
+      <Route path="/privacy-policy"element={<Layout><PrivacyPolicy /></Layout>} />
+      <Route path="/refund-policy"element={<Layout><RefundPolicy /></Layout>} />
+
 
        {/* EXPORT EXCEL DATA */}
       <Route path="/export-bookings" element={<Layout><ExportBookings /></Layout>} />
@@ -71,6 +78,9 @@ const App = () => {
       <Route path="/international-athlete-booking/:id" element={<Layout><InternationalAthleteForm /></Layout>} />
       <Route path="/international-athlete-success" element={<Layout><InternationalAthleteSuccess /></Layout>} />
       <Route path="/international-athlete-failure" element={<Layout><InternationalAthleteFailure /></Layout>} />
+
+
+
     </Routes>
   </Router>
   );

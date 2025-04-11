@@ -22,8 +22,12 @@ const Footer = () => {
         <div className="nav-section">
           <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/terms">Terms & Conditions</Link></li>
+            <li><Link to="/contact-us">Contact us</Link></li>
+            <li><Link to="/terms&conditions">Terms & Conditions</Link></li>
+            <li><Link to="/about-us">About us</Link></li>
+            <li><Link to="/privacy-policy">Privacy-Policy</Link></li>
+            <li><Link to="/refund-policy">Refund-Policy</Link></li>
+
           </ul>
         </div>
 
@@ -31,13 +35,13 @@ const Footer = () => {
         <div className="info-section">
           <div className="website-link">
             <a href="https://gymnazien.com" target="_blank" rel="noopener noreferrer">
-              By Gymnazien.com
+              By Gymnazien
             </a>
           </div>
           <div className="watermark" onClick={handleEmailClick}>
             Contact us for design and development services
           </div>
-          <p>code.dhiraj18@gmail.com</p>
+          {/* <p>code.dhiraj18@gmail.com</p> */}
         </div>
       </div>
     </footer>
