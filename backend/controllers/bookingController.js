@@ -2,7 +2,9 @@ import Booking from "../models/Booking.js";
 import Accommodation from "../models/Accommodation.js";
 import axios from "axios";
 import ExcelJS from "exceljs";
+import mongoose from "mongoose";
 
+const { ObjectId } = mongoose.Types;
 
 
 export const createBooking = async (req, res) => {
@@ -114,6 +116,8 @@ export const checkStatus = async (req, res) => {
       }
     );
 
+    console.log(JSON.stringify(response.data), null, 4);
+
     const paymentStatus = response.data[0]?.payment_status || 'PENDING';
     const booking = await Booking.findOne({ orderId: order_id });
 
@@ -190,8 +194,44 @@ export const getBookingDetails = async (req, res) => {
     const { order_id } = req.params;
     const booking = await Booking.findOne({ orderId: order_id });
 
+
+
     if (!booking) {
       return res.status(404).json({ message: "Booking not found" });
+    }
+
+
+    if (booking.paymentStatus !== 'PAID') {
+      // console.log(`Updating room availability for hotel: ${booking.hotelId}`);
+      try {
+        // Update room availability
+        const updatedHotel = await Accommodation.findOneAndUpdate(
+          { 
+            _id: new ObjectId(booking.hotelId),
+            type: booking.accommodationType
+          },
+          { 
+            $inc: { availableRooms: -booking.totalRooms },
+            $set: { updatedAt: new Date() }
+          },
+          { new: true }
+        );
+
+        if (!updatedHotel) {
+          console.error(`Hotel not found or not a hotel type: ${booking.hotelId}`);
+        } else {
+          // console.log(`Successfully updated hotel ${updatedHotel.name}. New available rooms: ${updatedHotel.availableRooms}`);
+        }
+      } catch (error) {
+        console.error("Error updating hotel availability:", error);
+      }
+
+      // Update booking status
+      await Booking.findOneAndUpdate(
+        { orderId: order_id },
+        { paymentStatus: 'PAID' },
+        { new: true }
+      );
     }
 
     res.json(booking);
@@ -309,11 +349,3 @@ export const excelExport = async (req, res) => {
     res.status(500).json({ success: false, message: 'Export failed' });
   }
 };
-
-// module.exports = {
-//   createBooking,
-//   checkStatus,
-//   getBookingDetails,
-//   updateRoomAvailability,
-//   excelExport
-// };

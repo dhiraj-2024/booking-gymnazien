@@ -15,6 +15,7 @@ const Success = () => {
       return;
     }
 
+
     // axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/booking/${orderId}`)
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/bookings/status/${orderId}`)
 
