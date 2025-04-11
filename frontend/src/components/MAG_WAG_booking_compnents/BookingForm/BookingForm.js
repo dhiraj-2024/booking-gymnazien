@@ -259,7 +259,7 @@ const baseStates = State.getStatesOfCountry("IN").map((state) => ({
     */
   
     try {
-      const response = await fetch("http://localhost:8888/api/bookings", {
+      const response = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -790,7 +790,7 @@ export default BookingForm;
 //     }
   
 //     try {
-//       const response = await fetch("http://localhost:8888/api/bookings", {
+//       const response = await fetch("/api/bookings", {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify({
@@ -812,7 +812,7 @@ export default BookingForm;
       
 //       if (data.success) {
 //         // Update room availability in the backend
-//         // await fetch(`http://localhost:8888/api/accommodations/${id}/update-rooms`, {
+//         // await fetch(`/api/accommodations/${id}/update-rooms`, {
 //         //   method: "PUT",
 //         //   headers: { "Content-Type": "application/json" },
 //         //   body: JSON.stringify({

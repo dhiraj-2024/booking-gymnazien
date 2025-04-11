@@ -14,7 +14,7 @@ const NominativeSuccess = () => {
     const fetchOrderDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8888/api/nominative/${orderId}`
+          `/api/nominative/${orderId}`
         );
         
         if (!response.ok) {

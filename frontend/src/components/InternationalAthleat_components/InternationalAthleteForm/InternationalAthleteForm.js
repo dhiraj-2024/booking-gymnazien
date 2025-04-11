@@ -149,7 +149,7 @@ const InternationalAthleteForm = () => {
         hotelName: formData.hotelName
       };
 
-      const response = await fetch("http://localhost:8888/api/international-athletes", {
+      const response = await fetch("/api/international-athletes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -507,7 +507,7 @@ export default InternationalAthleteForm;
 //         hotelName: formData.hotelName
 //       };
   
-//       const response = await fetch("http://localhost:8888/api/international-athletes", {
+//       const response = await fetch("/api/international-athletes", {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify(payload)

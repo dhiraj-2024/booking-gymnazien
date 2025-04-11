@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import connectDB from './config/db.js';
 import bookingRoutes from './routes/bookingRoutes.js';
@@ -64,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // Start Server
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
 
