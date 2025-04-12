@@ -157,6 +157,36 @@ const ContactUs = () => {
         </section>
       </div>
 
+      {/* Added Information Block */}
+      <div className="information-block">
+        <div className="contact-card">
+          <h2>Company Information</h2>
+          <p><strong>Last updated:</strong> 12-04-2025 12:57:28</p>
+          <div className="company-info">
+            <div className="info-item">
+              <h3>Merchant Legal entity name:</h3>
+              <p>GYMNAZIEN TECH PRIVATE LIMITED</p>
+            </div>
+            <div className="info-item">
+              <h3>Registered Address:</h3>
+              <p>I-3-2 Tarangan, padegaon, CHHTRAPATI sambhajinagar, CHHTRAPATI sambhajinagar, Maharashtra, PIN: 431001</p>
+            </div>
+            <div className="info-item">
+              <h3>Operational Address:</h3>
+              <p>I-3-2 Tarangan, padegaon, CHHTRAPATI sambhajinagar, CHHTRAPATI sambhajinagar, Maharashtra, PIN: 431001</p>
+            </div>
+            <div className="info-item">
+              <h3>Telephone No:</h3>
+              <p>8975685290</p>
+            </div>
+            <div className="info-item">
+              <h3>E-Mail ID:</h3>
+              <p>dhairyashil.deshmukh1999@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="contact-footer">
         <p>We typically respond to inquiries within 24 hours.</p>
         <button className="back-button" onClick={() => window.history.back()}>

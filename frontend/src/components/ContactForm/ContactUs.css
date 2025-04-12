@@ -180,3 +180,31 @@
       padding: 1rem;
     }
   }
+
+
+  .information-block {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .company-info {
+    margin-top: 1rem;
+  }
+  
+  .info-item {
+    margin-bottom: 1rem;
+  }
+  
+  .info-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: #555;
+  }
+  
+  .info-item p {
+    margin: 0;
+    line-height: 1.5;
+  }

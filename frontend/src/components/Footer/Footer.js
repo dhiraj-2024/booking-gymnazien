@@ -22,11 +22,11 @@ const Footer = () => {
         <div className="nav-section">
           <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/contact-us">Contact us</Link></li>
-            <li><Link to="/terms&conditions">Terms & Conditions</Link></li>
+            <li><Link to="/contact">Contact us</Link></li>
+            <li><Link to="/terms">Terms & Conditions</Link></li>
+            <li><Link to="/privacy">Refund and Cancellation</Link></li>
             <li><Link to="/about-us">About us</Link></li>
             <li><Link to="/privacy-policy">Privacy-Policy</Link></li>
-            <li><Link to="/refund-policy">Refund-Policy</Link></li>
 
           </ul>
         </div>

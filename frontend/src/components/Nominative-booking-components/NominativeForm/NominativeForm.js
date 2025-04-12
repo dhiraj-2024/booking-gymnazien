@@ -22,7 +22,7 @@ const NominativeForm = () => {
     { value: "gymnast", label: "Gymnast" },
     { value: "hod", label: "HOD" },
     { value: "judge", label: "Judge" },
-    { value: "technical_official", label: "Technical Official" },
+    // { value: "technical_official", label: "Technical Official" },
     { value: "coach", label: "Coach" },
     { value: "manager", label: "Manager" },
   ];
@@ -42,6 +42,7 @@ const NominativeForm = () => {
     { value: "Ladakh", label: "Ladakh" },
     { value: "Lakshadweep", label: "Lakshadweep" },
     { value: "Puducherry", label: "Puducherry" },
+    { value: "Others", label: "Others" },
   ];
     
   const indianStates = [...baseStates, ...additionalOptions];

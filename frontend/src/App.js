@@ -35,6 +35,7 @@ import ExportInternationalAthletes from "./components/ExcleExport/ExportInternat
 import AboutUs from "./components/TempComponents/AboutUs.js";
 import PrivacyPolicy from "./components/TempComponents/PrivacyPolicy.js";
 import RefundPolicy from "./components/TempComponents/RefundPolicy.js";
+import TermsAndCondition from "./components/TempComponents/TermsAndCondition.js";
 
 
 
@@ -51,10 +52,11 @@ const App = () => {
 
       {/* COMMONS COMPONENTS ROUTES */}
       <Route path="/terms&conditions" element={<Layout><TermsAndConditions /></Layout>} />
-      <Route path="/contact-us" element={<Layout><ContactUs /></Layout>} />
+      <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
       <Route path="/about-us" element={<Layout><AboutUs /></Layout>} />
       <Route path="/privacy-policy"element={<Layout><PrivacyPolicy /></Layout>} />
-      <Route path="/refund-policy"element={<Layout><RefundPolicy /></Layout>} />
+      <Route path="/privacy"element={<Layout><RefundPolicy /></Layout>} />
+      <Route path="/terms"element={<Layout><TermsAndCondition /></Layout>} />
 
 
        {/* EXPORT EXCEL DATA */}

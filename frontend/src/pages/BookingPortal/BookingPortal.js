@@ -23,13 +23,13 @@ const BookingPortal = () => {
       icon: "🌍",
        bgColor: "linear-gradient(135deg,rgb(145, 91, 252) 0%,rgb(200, 184, 255) 100%)"
     },
-    // {
-    //   title: "Nominative Entry",
-    //   description: "Register for nominative entries (judges, coaches, etc.)",
-    //   route: "/nominative-booking",
-    //   icon: "📋",
-    //   bgColor: "linear-gradient(135deg,rgb(233, 158, 67) 0%,rgb(141, 61, 184) 100%)"
-    // },
+    {
+      title: "Nominative Entry",
+      description: "Register for nominative entries (judges, coaches, etc.)",
+      route: "/nominative-booking",
+      icon: "📋",
+      bgColor: "linear-gradient(135deg,rgb(233, 158, 67) 0%,rgb(141, 61, 184) 100%)"
+    },
   ];
 
   return (
