@@ -1,9 +1,8 @@
-// backend/routes/nominativeRoutes.js
 import express from "express";
-import { 
-  createNominativeEntry, 
-  checkNominativeStatus, 
-  getNominativeDetails 
+import {
+  createNominativeEntry,
+  checkNominativeStatus,
+  getNominativeDetails
 } from "../controllers/nominativeController.js";
 
 const router = express.Router();
@@ -16,12 +15,12 @@ export default router;
 
 
 // // backend/routes/nominativeRoutes.js
-// const express = require("express");
-// const { 
+// import express from "express";
+// import { 
 //   createNominativeEntry, 
 //   checkNominativeStatus, 
 //   getNominativeDetails 
-// } = require("../controllers/nominativeController.js"); 
+// } from "../controllers/nominativeController.js";
 
 // const router = express.Router();
 
@@ -29,4 +28,5 @@ export default router;
 // router.get("/status/:order_id", checkNominativeStatus);
 // router.get("/:order_id", getNominativeDetails);
 
-// module.exports = router;
+// export default router;
+
