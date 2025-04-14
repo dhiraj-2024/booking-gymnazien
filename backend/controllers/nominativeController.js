@@ -4,12 +4,13 @@ import axios from "axios";
 export const createNominativeEntry = async (req, res) => {
   try {
     const { participants } = req.body;
-    
+    console.log(JSON.stringify(req.body, null, 2));
+
     // Validate participants
     if (!participants || !Array.isArray(participants)) {
       return res.status(400).json({
         success: false,
-        message: "Participants data is required"
+        message: "Participants data is required",
       });
     }
 
@@ -21,19 +22,30 @@ export const createNominativeEntry = async (req, res) => {
     const orderId = `NOM-${Date.now()}`;
     const primaryParticipant = participants[0];
 
-    // Check if all participants are judges no payment 
-    const allJudges = participants.every(p => p.role === "judge");
+    // Check if all participants are judges no payment
+    const allJudges = participants.every((p) => p.role === "judge");
 
     const newNominative = new Nominative({
-      participants: participants.map(p => ({
-        ...p,
-        dateOfBirth: new Date(p.dateOfBirth),
-        registrationFee: p.role === "judge" ? 0 : 1000,
-        paymentStatus: p.role === "judge" ? "FREE" : "PENDING"
-      })),
+      participants: participants.map((p) => {
+        console.log(p.discipline);
+        return {
+          firstName: p.firstName,
+          lastName: p.lastName,
+          discipline: p.discipline,
+          group: p.group,
+          role: p.role,
+          state: p.state,
+          mobileNumber: p.mobileNumber,
+          email: p.email,
+          teamName: p.teamName,
+          dateOfBirth: new Date(p.dateOfBirth),
+          registrationFee: p.role === "judge" ? 0 : 1000,
+          paymentStatus: p.role === "judge" ? "FREE" : "PENDING",
+        };
+      }),
       totalAmount,
       orderId,
-      paymentStatus: allJudges ? "FREE" : "PENDING"
+      paymentStatus: allJudges ? "FREE" : "PENDING",
     });
 
     await newNominative.save();
@@ -41,12 +53,13 @@ export const createNominativeEntry = async (req, res) => {
     if (allJudges) {
       return res.json({
         success: true,
-        order_id: orderId
+        order_id: orderId,
       });
     }
 
     // Proceed with payment for non-judge entries
-    const cashfreeResponse = await axios.post(process.env.CASHFREE_API_URL,
+    const cashfreeResponse = await axios.post(
+      process.env.CASHFREE_API_URL,
       {
         order_id: orderId,
         order_amount: totalAmount,
@@ -59,31 +72,34 @@ export const createNominativeEntry = async (req, res) => {
         order_meta: {
           return_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,
           notify_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,
-          payment_methods: 'cc,dc,upi',
-          order_type: "nominative_entry"
-        }
+          payment_methods: "cc,dc,upi",
+          order_type: "nominative_entry",
+        },
       },
       {
         headers: {
           "Content-Type": "application/json",
           "x-client-id": process.env.CASHFREE_CLIENT_ID,
           "x-client-secret": process.env.CASHFREE_CLIENT_SECRET,
-          "x-api-version": process.env.CASHFREE_API_VERSION
-        }
+          "x-api-version": process.env.CASHFREE_API_VERSION,
+        },
       }
     );
 
     res.json({
       success: true,
       sessionId: cashfreeResponse.data.payment_session_id,
-      order_id: orderId
+      order_id: orderId,
     });
-
   } catch (error) {
-    console.error("Nominative Entry Error:", error.response?.data || error.message);
+    console.error(
+      "Nominative Entry Error:",
+      error.response?.data || error.message
+    );
     res.status(500).json({
       success: false,
-      message: error.response?.data?.message || "Nominative entry creation failed"
+      message:
+        error.response?.data?.message || "Nominative entry creation failed",
     });
   }
 };
@@ -98,13 +114,13 @@ export const checkNominativeStatus = async (req, res) => {
         headers: {
           "x-client-id": process.env.CASHFREE_CLIENT_ID,
           "x-client-secret": process.env.CASHFREE_CLIENT_SECRET,
-          "x-api-version": process.env.CASHFREE_API_VERSION
-        }
+          "x-api-version": process.env.CASHFREE_API_VERSION,
+        },
       }
     );
 
-    const paymentStatus = response.data[0]?.payment_status || 'PENDING';
-    const cfStatus = paymentStatus === 'SUCCESS' ? 'PAID' : 'FAILED';
+    const paymentStatus = response.data[0]?.payment_status || "PENDING";
+    const cfStatus = paymentStatus === "SUCCESS" ? "PAID" : "FAILED";
 
     // Update both main payment status and individual participant statuses
     await Nominative.findOneAndUpdate(
@@ -112,22 +128,30 @@ export const checkNominativeStatus = async (req, res) => {
       {
         paymentStatus: cfStatus,
         $set: {
-          "participants.$[].paymentStatus": function() {
+          "participants.$[].paymentStatus": function () {
             return this.role === "judge" ? "FREE" : cfStatus;
-          }
-        }
+          },
+        },
       }
     );
 
-    if (paymentStatus === 'SUCCESS') {
-      return res.redirect(`${process.env.FRONTEND_URL}/nominative-success?order_id=${order_id}`);
+    if (paymentStatus === "SUCCESS") {
+      return res.redirect(
+        `${process.env.FRONTEND_URL}/nominative-success?order_id=${order_id}`
+      );
     } else {
-      return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?order_id=${order_id}`);
+      return res.redirect(
+        `${process.env.FRONTEND_URL}/nominative-failure?order_id=${order_id}`
+      );
     }
-
   } catch (error) {
-    console.error("Nominative Status Check Error:", error.response?.data || error.message);
-    return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?error=status_check_failed`);
+    console.error(
+      "Nominative Status Check Error:",
+      error.response?.data || error.message
+    );
+    return res.redirect(
+      `${process.env.FRONTEND_URL}/nominative-failure?error=status_check_failed`
+    );
   }
 };
 
@@ -147,28 +171,23 @@ export const getNominativeDetails = async (req, res) => {
   }
 };
 
-
-
-
-
 // // backend/controllers/nominativeController.js
 // import Nominative from "../models/Nominative.js"
 // import axios from "axios"
 
 // export const createNominativeEntry = async (req, res) => {
 //   try {
-//     const { 
+//     const {
 //       name, role, state, mobileNumber,dateOfBirth,registrationFee    // email, teamName removed
 //     } = req.body;
 
-
 //     if (!dateOfBirth || isNaN(new Date(dateOfBirth).getTime())) {
-//         return res.status(400).json({ 
+//         return res.status(400).json({
 //           success: false,
-//           message: "Valid date of birth is required" 
+//           message: "Valid date of birth is required"
 //         });
 //       }
-  
+
 //     const orderId = `NOM-${Date.now()}`;
 
 //     const newNominative = new Nominative({
@@ -176,7 +195,7 @@ export const getNominativeDetails = async (req, res) => {
 //       role,
 //       state,
 //       mobileNumber,
-//       dateOfBirth: new Date(dateOfBirth), 
+//       dateOfBirth: new Date(dateOfBirth),
 //     //   email,
 //     //   teamName,
 //       registrationFee,
@@ -206,10 +225,10 @@ export const getNominativeDetails = async (req, res) => {
 //           customer_phone: mobileNumber,
 //         },
 //         order_meta: {
-//           return_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,  
-//           notify_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,  
+//           return_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,
+//           notify_url: `${process.env.BACKEND_URL}/api/nominative/status/${orderId}`,
 //           payment_methods: 'cc,dc,upi',
-//           order_type: "nominative_entry" 
+//           order_type: "nominative_entry"
 //         }
 //       },
 //       {
@@ -230,9 +249,9 @@ export const getNominativeDetails = async (req, res) => {
 
 //   } catch (error) {
 //     console.error("Nominative Entry Error:", error.response?.data || error.message);
-//     res.status(500).json({ 
-//       success: false, 
-//       message: error.response?.data?.message || "Nominative entry creation failed" 
+//     res.status(500).json({
+//       success: false,
+//       message: error.response?.data?.message || "Nominative entry creation failed"
 //     });
 //   }
 // };
@@ -242,7 +261,7 @@ export const getNominativeDetails = async (req, res) => {
 //     const { order_id } = req.params;
 
 //     const response = await axios.get(
-//       `${process.env.CASHFREE_API_URL}/${order_id}/payments`, 
+//       `${process.env.CASHFREE_API_URL}/${order_id}/payments`,
 //       {
 //         headers: {
 //           "x-client-id": process.env.CASHFREE_CLIENT_ID,
@@ -253,21 +272,21 @@ export const getNominativeDetails = async (req, res) => {
 //     );
 
 //     const paymentStatus = response.data[0]?.payment_status || 'PENDING';
-    
+
 //     await Nominative.findOneAndUpdate(
 //       { orderId: order_id },
 //       { paymentStatus: paymentStatus === 'SUCCESS' ? 'PAID' : 'FAILED' }
 //     );
 
 //     if (paymentStatus === 'SUCCESS') {
-//       return res.redirect(`${process.env.FRONTEND_URL}/nominative-success?order_id=${order_id}`);  
+//       return res.redirect(`${process.env.FRONTEND_URL}/nominative-success?order_id=${order_id}`);
 //     } else {
-//       return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?order_id=${order_id}`);  
+//       return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?order_id=${order_id}`);
 //     }
 
 //   } catch (error) {
 //     console.error("Nominative Status Check Error:", error.response?.data || error.message);
-//     return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?error=status_check_failed`);  
+//     return res.redirect(`${process.env.FRONTEND_URL}/nominative-failure?error=status_check_failed`);
 //   }
 // };
 

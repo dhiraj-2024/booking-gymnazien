@@ -182,7 +182,7 @@ const NominativeForm = () => {
     }
 
     try {
-      const endpoint = `${process.env.BACKEND_URL}/api/nominative/`;
+      const endpoint = `/api/nominative/`;
       console.log("Endpoint:", endpoint);
       const payload = {
         participants: rows,

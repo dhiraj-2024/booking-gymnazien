@@ -19,7 +19,7 @@ const Failure = () => {
       return;
     }
 
-    axios.get(`/api/booking/${orderId}`)
+    axios.get(`/api/bookings/${orderId}`)
       .then(response => {
         setBookingDetails(response.data);
         setLoading(false);
@@ -69,7 +69,7 @@ const Failure = () => {
           <div className="action-buttons">
             <button 
               className="retry-button" 
-              onClick={() => window.location.href = `/booking/${bookingDetails.hotelId}`}
+              onClick={() => window.location.href = `api/bookings/${bookingDetails.hotelId}`}
             >
               Try Again
             </button>

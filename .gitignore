@@ -4,6 +4,7 @@ node_modules/
 # Build output
 backend/build/
 backend/data
+frontend/build/
 
 # Logs
 *.log
