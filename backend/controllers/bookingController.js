@@ -181,43 +181,42 @@ export const getBookingDetails = async (req, res) => {
     const { order_id } = req.params;
     const booking = await Booking.findOne({ orderId: order_id });
 
-
     if (!booking) {
       return res.status(404).json({ message: "Booking not found" });
     }
 
     const response = await axios.get(
-      `${process.env.CASHFREE_API_URL}/${order_id}/payments`, 
+      `${process.env.CASHFREE_API_URL}/${order_id}/payments`,
       {
         headers: {
           "x-client-id": process.env.CASHFREE_CLIENT_ID,
           "x-client-secret": process.env.CASHFREE_CLIENT_SECRET,
-          "x-api-version": process.env.CASHFREE_API_VERSION
-        }
+          "x-api-version": process.env.CASHFREE_API_VERSION,
+        },
       }
     );
 
-    
-    const paymentStatus = response.data[0]?.payment_status || 'PENDING';
+    const paymentStatus = response.data[0]?.payment_status || "PENDING";
 
-
-    if (paymentStatus === 'SUCCESS' && booking.paymentStatus !== 'PAID') {
+    if (paymentStatus === "SUCCESS" && booking.paymentStatus !== "PAID") {
       try {
         // Update room availability
         const updatedHotel = await Accommodation.findOneAndUpdate(
-          { 
+          {
             _id: new ObjectId(booking.hotelId),
-            type: booking.accommodationType
+            type: booking.accommodationType,
           },
-          { 
+          {
             $inc: { availableRooms: -booking.totalRooms },
-            $set: { updatedAt: new Date() }
+            $set: { updatedAt: new Date() },
           },
           { new: true }
         );
 
         if (!updatedHotel) {
-          console.error(`Hotel not found or not a hotel type: ${booking.hotelId}`);
+          console.error(
+            `Hotel not found or not a hotel type: ${booking.hotelId}`
+          );
         }
       } catch (error) {
         console.error("Error updating hotel availability:", error);
@@ -226,25 +225,28 @@ export const getBookingDetails = async (req, res) => {
       // Update booking status
       await Booking.findOneAndUpdate(
         { orderId: order_id },
-        { paymentStatus: 'PAID' },
+        { paymentStatus: "PAID" },
         { new: true }
       );
-      res.json(booking);
+      return res.json(booking);
     } else {
       await Booking.findOneAndUpdate(
         { orderId: order_id },
-        { paymentStatus: 'FAILED' },
+        { paymentStatus: "FAILED" },
         { new: true }
       );
-      
+
+      // Ensure proper redirection
       return res.redirect(
         `${process.env.FRONTEND_URL}/failure?order_id=${order_id}`
       );
     }
-
   } catch (error) {
     console.error("Error fetching booking details:", error);
-    res.status(500).json({ message: "Server error" });
+    // Redirect to failure page with error details
+    return res.redirect(
+      `${process.env.FRONTEND_URL}/failure?error=server_error`
+    );
   }
 };
 
