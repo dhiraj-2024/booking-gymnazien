@@ -10,7 +10,8 @@ const NominativeForm = () => {
     {
       firstName: "",
       lastName: "",
-      discipline: "", 
+      discipline: "",
+      group: "",
       role: "",
       state: "",
       mobileNumber: "",
@@ -24,7 +25,10 @@ const NominativeForm = () => {
     { value: "MAG", label: "MAG (Men Artistic Gymnastics)" },
     { value: "WAG", label: "WAG (Women Artistic Gymnastics)" },
   ];
-
+  const groups = [
+    { value: "junior", label: "Junior" },
+    { value: "senior", label: "Senior" },
+  ];
   const roles = [
     { value: "gymnast", label: "Gymnast" },
     { value: "hod", label: "HOD" },
@@ -32,7 +36,6 @@ const NominativeForm = () => {
     { value: "coach", label: "Coach" },
     { value: "manager", label: "Manager" },
   ];
-
 
   const handleDisciplineChange = (index, selectedOption) => {
     const updatedRows = [...rows];
@@ -42,7 +45,14 @@ const NominativeForm = () => {
     };
     setRows(updatedRows);
   };
-
+  const handleGroupChange = (index, selectedOption) => {
+    const updatedRows = [...rows];
+    updatedRows[index] = {
+      ...updatedRows[index],
+      group: selectedOption.value,
+    };
+    setRows(updatedRows);
+  };
 
   const baseStates = State.getStatesOfCountry("IN").map((state) => ({
     value: state.isoCode,
@@ -51,9 +61,15 @@ const NominativeForm = () => {
   const additionalOptions = [
     { value: "SSCB", label: "SSCB" },
     { value: "Railways", label: "Railways" },
-    { value: "Andaman and Nicobar Islands", label: "Andaman and Nicobar Islands" },
+    {
+      value: "Andaman and Nicobar Islands",
+      label: "Andaman and Nicobar Islands",
+    },
     { value: "Chandigarh", label: "Chandigarh" },
-    { value: "Dadra and Nagar Haveli and Daman and Diu", label: "Dadra and Nagar Haveli and Daman and Diu" },
+    {
+      value: "Dadra and Nagar Haveli and Daman and Diu",
+      label: "Dadra and Nagar Haveli and Daman and Diu",
+    },
     { value: "Delhi", label: "Delhi" },
     { value: "Jammu and Kashmir", label: "Jammu and Kashmir" },
     { value: "Ladakh", label: "Ladakh" },
@@ -61,7 +77,7 @@ const NominativeForm = () => {
     { value: "Puducherry", label: "Puducherry" },
     { value: "Others", label: "Others" },
   ];
-    
+
   const indianStates = [...baseStates, ...additionalOptions];
 
   const handleRowChange = (index, e) => {
@@ -71,12 +87,12 @@ const NominativeForm = () => {
       ...updatedRows[index],
       [name]: value,
     };
-    
+
     // Update registration fee if role is changed
     if (name === "role") {
       updatedRows[index].registrationFee = value === "judge" ? 0 : 1000;
     }
-    
+
     setRows(updatedRows);
   };
 
@@ -128,11 +144,14 @@ const NominativeForm = () => {
     const birthDate = new Date(dateString);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
       age--;
     }
-    
+
     return age >= 10 && age <= 80;
   };
 
@@ -153,9 +172,11 @@ const NominativeForm = () => {
         alert("Age must be between 10 and 80 years for all participants");
         return;
       }
-      
+
       if (!validateMobile(row.mobileNumber)) {
-        alert("Please enter valid 10-digit mobile numbers for all participants");
+        alert(
+          "Please enter valid 10-digit mobile numbers for all participants"
+        );
         return;
       }
     }
@@ -190,7 +211,7 @@ const NominativeForm = () => {
       const data = await response.json();
 
       // Check if all roles are judge (no payment needed)
-      const allJudges = rows.every(row => row.role === "judge");
+      const allJudges = rows.every((row) => row.role === "judge");
       if (allJudges) {
         alert("Registration successful!");
       } else {
@@ -215,14 +236,17 @@ const NominativeForm = () => {
       <div className="nominative-container">
         <div className="nominative-header">
           <h2>Nominative Entry Form</h2>
-          <p className="subtitle">Note: If you need to update any field after submission, an additional fee of ₹1000 will be applicable.</p>
+          <p className="subtitle">
+            Note: If you need to update any field after submission, an
+            additional fee of ₹1000 will be applicable.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="nominative-form">
           {rows.map((row, index) => (
             <div key={index} className="participant-section">
               <h3>Row {index + 1}</h3>
-              
+
               <div className="form-group">
                 <label htmlFor={`firstName-${index}`}>First Name</label>
                 <input
@@ -255,8 +279,24 @@ const NominativeForm = () => {
                   options={disciplines}
                   name="discipline"
                   value={disciplines.find((d) => d.value === row.discipline)}
-                  onChange={(selectedOption) => handleDisciplineChange(index, selectedOption)}
+                  onChange={(selectedOption) =>
+                    handleDisciplineChange(index, selectedOption)
+                  }
                   placeholder="Select discipline"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`group-${index}`}>Group</label>
+                <Select
+                  id={`group-${index}`}
+                  options={groups}
+                  name="group"
+                  value={groups.find((g) => g.value === row.group)}
+                  onChange={(selectedOption) =>
+                    handleGroupChange(index, selectedOption)
+                  }
+                  placeholder="Select group"
                   required
                 />
               </div>
@@ -268,7 +308,9 @@ const NominativeForm = () => {
                   options={roles}
                   name="role"
                   value={roles.find((r) => r.value === row.role)}
-                  onChange={(selectedOption) => handleRoleChange(index, selectedOption)}
+                  onChange={(selectedOption) =>
+                    handleRoleChange(index, selectedOption)
+                  }
                   placeholder="Select role"
                   required
                 />
@@ -288,7 +330,9 @@ const NominativeForm = () => {
                   onFocus={(e) => (e.target.showPicker = false)}
                 />
                 {row.dateOfBirth && !validateAge(row.dateOfBirth) && (
-                  <p className="error-message">Age must be between 10 and 80 years</p>
+                  <p className="error-message">
+                    Age must be between 10 and 80 years
+                  </p>
                 )}
               </div>
 
@@ -299,7 +343,9 @@ const NominativeForm = () => {
                   options={indianStates}
                   name="state"
                   value={indianStates.find((s) => s.value === row.state)}
-                  onChange={(selectedOption) => handleStateChange(index, selectedOption)}
+                  onChange={(selectedOption) =>
+                    handleStateChange(index, selectedOption)
+                  }
                   placeholder="Select state / Union Territories"
                   required
                 />
@@ -320,7 +366,9 @@ const NominativeForm = () => {
                   pattern="[0-9]{10}"
                 />
                 {row.mobileNumber && !validateMobile(row.mobileNumber) && (
-                  <p className="error-message">Please enter a valid 10-digit mobile number</p>
+                  <p className="error-message">
+                    Please enter a valid 10-digit mobile number
+                  </p>
                 )}
               </div>
 
@@ -336,11 +384,7 @@ const NominativeForm = () => {
             </div>
           ))}
 
-          <button
-            type="button"
-            className="add-row-button"
-            onClick={addRow}
-          >
+          <button type="button" className="add-row-button" onClick={addRow}>
             Add Another Participant
           </button>
 
@@ -351,7 +395,7 @@ const NominativeForm = () => {
           </div>
 
           <button type="submit" className="submit-button">
-            {rows.every(row => row.role === "judge")
+            {rows.every((row) => row.role === "judge")
               ? "Submit Registration"
               : "Proceed to Pay"}
           </button>
@@ -362,7 +406,6 @@ const NominativeForm = () => {
 };
 
 export default NominativeForm;
-
 
 // // src/components/NominativeForm/NominativeForm.js
 // import React, { useState } from "react";
@@ -410,11 +453,9 @@ export default NominativeForm;
 //     { value: "Puducherry", label: "Puducherry" },
 //     { value: "Others", label: "Others" },
 //   ];
-    
+
 //   const indianStates = [...baseStates, ...additionalOptions];
 
-
-  
 //   const handleChange = (e) => {
 //     const { name, value } = e.target;
 //     setFormData((prev) => ({
@@ -538,14 +579,14 @@ export default NominativeForm;
 
 //           {/* <div className="form-group">
 //             <label htmlFor="teamName">Team Name</label>
-//             <input 
-//               type="text" 
-//               id="teamName" 
-//               name="teamName" 
-//               placeholder="Enter your team name" 
-//               value={formData.teamName} 
-//               onChange={handleChange} 
-//               required 
+//             <input
+//               type="text"
+//               id="teamName"
+//               name="teamName"
+//               placeholder="Enter your team name"
+//               value={formData.teamName}
+//               onChange={handleChange}
+//               required
 //             />
 //           </div> */}
 
@@ -585,14 +626,14 @@ export default NominativeForm;
 
 //           {/* <div className="form-group">
 //             <label htmlFor="email">Email Address</label>
-//             <input 
-//               type="email" 
-//               id="email" 
-//               name="email" 
-//               placeholder="Enter your email" 
-//               value={formData.email} 
-//               onChange={handleChange} 
-//               required 
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               placeholder="Enter your email"
+//               value={formData.email}
+//               onChange={handleChange}
+//               required
 //             />
 //           </div> */}
 

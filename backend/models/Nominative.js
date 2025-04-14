@@ -4,6 +4,7 @@ const ParticipantSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   discipline: { type: String, required: true, enum: ["MAG", "WAG"] }, 
+  discipline: { type: String, required: true, enum: ["Junior", "Senior"] }, 
   role: { type: String, required: true, enum: ["gymnast", "hod", "judge", "coach", "manager"] },
   state: { type: String, required: true },
   mobileNumber: { type: String, required: true },

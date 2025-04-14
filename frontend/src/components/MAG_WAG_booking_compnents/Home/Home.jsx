@@ -82,7 +82,7 @@ const Home = () => {
               </div>
               
               <div className="availability-section">
-                <p><strong>Available Rooms:</strong> {accommodation.availableRooms}</p>
+                {/* <p><strong>Available Rooms:</strong> {accommodation.availableRooms}</p>  */}
                 {/* <p><strong>Max Booking:</strong> {accommodation.bookingLimit} rooms per person</p> */}
               </div>
               

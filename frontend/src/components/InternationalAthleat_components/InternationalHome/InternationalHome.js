@@ -34,9 +34,9 @@ const InternationalHome = () => {
           notes: [
             '🔷 Eligibility: Accommodation is available for International Players (participated in FIG Recognized Competitions in Artistic Gymnastics) attending the Nationals either as a Gymnast or a Coach.Their name must appear in the Nominative Registration submitted by a State or Union Territory, excluding SSCB and Railways.',
             '🔷 Accommodation Type:Eligible individuals will be provided Hotel accommodation on a Twin or Triple sharing basis.',
-            '🔶 All accommodation applications will be verified for eligibility after submission.',
-            '🔶 If the applicant meets the eligibility criteria, a confirmation of reservation will be sent via email or message.',
-            '🔶 If the applicant is found ineligible, the reservation will not be provided, and they will be informed accordingly.',
+            '🔷 All accommodation applications will be verified for eligibility after submission.',
+            '🔷 If the applicant meets the eligibility criteria, a confirmation of reservation will be sent via email or message.',
+            '🔷 If the applicant is found ineligible, the reservation will not be provided, and they will be informed accordingly.',
             '⚠️ Important: In case of ineligibility, the Booking Fee will be forfeited and not refunded.',
             ...(hotel.notes || [])
           ]

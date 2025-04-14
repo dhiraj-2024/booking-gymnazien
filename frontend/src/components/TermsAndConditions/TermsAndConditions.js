@@ -21,7 +21,7 @@ const TermsAndConditions = () => {
               <div>
                 <h3>Check-in/Check-out Times</h3>
                 <ul>
-                  <li>Check-in time: <strong>12:00 PM</strong></li>
+                  <li>Check-in time: <strong>02:00 PM</strong></li>
                   <li>Check-out time: <strong>11:00 AM</strong></li>
                   <li>Early check-in & late check-out: Subject to availability and additional charges</li>
                 </ul>
