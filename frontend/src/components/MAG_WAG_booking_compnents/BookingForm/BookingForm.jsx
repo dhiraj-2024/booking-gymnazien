@@ -309,7 +309,7 @@ const baseStates = State.getStatesOfCountry("IN").map((state) => ({
       <div className="booking-container">
         <div className="booking-header">
           <h2>Book Your Stay at <br/> <span style={{fontSize:"20px", color:"green"}}>{accommodation?.name}</span></h2>
-          <p className="room-type">Available Rooms: {accommodation?.availableRooms}</p>
+          {/* <p className="room-type">Available Rooms: {accommodation?.availableRooms}</p> */}
           <p className="accommodation-type">Type: {formData.accommodationType === "hostel" ? "Hostel" : "Hotel"}</p>
         </div>
         
