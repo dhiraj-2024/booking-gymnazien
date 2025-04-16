@@ -13,6 +13,7 @@ export const createInternationalAthlete = async (req, res) => {
       mobileNumber,
       email,
       teamType,
+      message, // new added for message
       state,
       checkIn,
       checkOut,
@@ -29,7 +30,11 @@ export const createInternationalAthlete = async (req, res) => {
     const requiredFields = [
       { field: 'name', name: 'Contact Person Name' },
       { field: 'mobileNumber', name: 'Mobile Number' },
-      { field: 'email', name: 'Email Address' },
+      { field: 'email', name: 'Email Address' },// new added for message 
+      { field: 'state', name: 'State' },
+      { field: 'message', name: 'Message' },
+      { field: 'hotelName', name: 'Hotel Name' },
+      { field: 'totalPrice', name: 'Total Price' },
       { field: 'state', name: 'State' },
       { field: 'teamType', name: 'Team Type' },
       { field: 'checkIn', name: 'Check-in Date' },
@@ -86,6 +91,7 @@ export const createInternationalAthlete = async (req, res) => {
       email,
       teamType,
       state,
+      message, // new added for message
       checkIn,
       checkOut,
       stayDuration,

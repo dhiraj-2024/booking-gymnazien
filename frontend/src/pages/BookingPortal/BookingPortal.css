@@ -38,7 +38,7 @@ height: 120px;
   color: rgb(214, 214, 214);
   font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgb(32, 220, 253);
+  text-shadow: 1px 0px 1px rgb(32, 220, 253);
   margin: 0;
 }
 
@@ -162,4 +162,66 @@ height: 120px;
   .booking-card p {
     font-size: 0.95rem;
   }
+}
+
+
+/* for pdf section:  */
+.pdf-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.pdf-heading {
+  color: rgb(209, 251, 255);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: bold;
+  text-shadow: 1px 0px 1px rgb(82, 82, 82);
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pdf-card-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.pdf-card {
+  background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+  color: black;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pdf-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pdf-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.pdf-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+
+.pdf-card p {
+  font-size: 0.95rem;
+  color: #333;
 }

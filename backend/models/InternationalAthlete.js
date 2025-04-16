@@ -10,10 +10,12 @@ const InternationalAthleteSchema = new mongoose.Schema({
   name: { type: String, required: true },
   mobileNumber: { type: String, required: true },
   email: { type: String, required: true },
+  message: { type: String }, // added for message field
 
   // Team Information
   teamType: { type: String, required: true, enum: ["MAG", "WAG"] },
   state: { type: String, required: true },
+
 
   // Booking Dates
   checkIn: { type: Date, required: true },
