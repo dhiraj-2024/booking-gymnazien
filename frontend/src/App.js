@@ -10,7 +10,7 @@ import Admin from "./pages/Admin/Admin.js";
 
 //? MAG_WAG BOOKING
 import Home from "./components/MAG_WAG_booking_compnents/Home/Home.jsx";
-import BookingForm from "./components/MAG_WAG_booking_compnents/BookingForm/BookingForm.js";
+import BookingForm from "./components/MAG_WAG_booking_compnents/BookingForm/BookingForm";
 import BookingStatus from "./components/MAG_WAG_booking_compnents/BookingStatus/BookingStatus.js";
 import Failure from "./components/MAG_WAG_booking_compnents/Failure/Failuer.js";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions.js";
