@@ -69,7 +69,7 @@ const Home = () => {
         <div className="hotel-list">
           {accommodations.map((accommodation) => (
             <div key={accommodation._id} className="hotel-card">
-              <img src={accommodation.image} alt={accommodation.name} className="hotel-image" />
+              {/* <img src={accommodation.image} alt={accommodation.name} className="hotel-image" /> */}
               <h2>{accommodation.name}</h2>
               <p>{accommodation.description}</p>
               

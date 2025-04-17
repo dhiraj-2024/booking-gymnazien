@@ -83,7 +83,7 @@ export const BookingStatus = () => {
   
               <p><strong>Total Price:</strong> ₹{bookingDetails.totalPrice}</p>
             </div>
-            <div className="Note">📄 Note: This invoice serves as your payment confirmation. Kindly keep a copy for future reference.</div>
+            {/* <div className="Note">📄 Note: This invoice serves as your payment confirmation. Kindly keep a copy for future reference.</div> */}
             <button className="download-button" onClick={() => window.print()}>
               Download Invoice
             </button>

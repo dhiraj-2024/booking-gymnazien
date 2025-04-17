@@ -91,7 +91,7 @@ const InternationalHome = () => {
         <div className="hotel-list">
           {hotels.map((hotel) => (
             <div key={hotel._id} className="hotel-card">
-              <img src={hotel.image} alt={hotel.name} className="hotel-image" />
+              {/* <img src={hotel.image} alt={hotel.name} className="hotel-image" /> */}
               <h2>{hotel.name}</h2>
               <p>{hotel.description}</p>
               
