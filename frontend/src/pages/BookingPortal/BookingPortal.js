@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AccommodationInformation from '../../pdfs/Accommodation Information from LOC - Pune 2025.pdf';
 import JuniorAndSenior from '../../pdfs/Junior and Senior ART National Championship 2025 Pune, MAH.pdf';
 import PuneArtisticNationals from '../../pdfs/Pune Artistic Nationals OC Communication.pdf';
+import CompetitionScedule from '../../pdfs/Competition Schedule MAG & WAG - Pune 2025.pdf'
 import './BookingPortal.css';
 
 
@@ -82,6 +83,11 @@ const BookingPortal = () => {
       <div className="pdf-icon">📑</div>
       <h4>OC Communication</h4>
       <p>Important communication from the organizing committee.</p>
+    </a>
+    <a href={CompetitionScedule} target="_blank" rel="noopener noreferrer" className="pdf-card">
+      <div className="pdf-icon">📑</div>
+      <h4>MAG WAG Schedule</h4>
+      <p>Competition Schedule MAG & WAG</p>
     </a>
   </div>
 </div>
