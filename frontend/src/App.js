@@ -17,9 +17,9 @@ import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditio
 import ContactUs from "./components/ContactForm/ContactUs.js";
 
 //? NOMINATIVE BOOKING
-import NominativeForm from "./components/Nominative-booking-components/NominativeForm/NominativeForm.js";
-import NominativeSuccess from "./components/Nominative-booking-components/Success/NominativeSuccess.js";
-import NominativeFailure from "./components/Nominative-booking-components/Failuer/NominativeFailure.js";
+// import NominativeForm from "./components/Nominative-booking-components/NominativeForm/NominativeForm.js";
+// import NominativeSuccess from "./components/Nominative-booking-components/Success/NominativeSuccess.js";
+// import NominativeFailure from "./components/Nominative-booking-components/Failuer/NominativeFailure.js";
 
 
 //? INTERNATIONAL ATHLETE BOOKING
@@ -71,9 +71,9 @@ const App = () => {
       <Route path="/success" element={<Layout><BookingStatus /></Layout>} />
 
       {/* NOMINATIVE BOOKING ROUTES */}
-      <Route path="/nominative-booking" element={<Layout><NominativeForm /></Layout>} />
+      {/* <Route path="/nominative-booking" element={<Layout><NominativeForm /></Layout>} />
       <Route path="/nominative-success" element={<Layout><NominativeSuccess /></Layout>} />
-      <Route path="/nominative-failure" element={<Layout><NominativeFailure /></Layout>} />
+      <Route path="/nominative-failure" element={<Layout><NominativeFailure /></Layout>} /> */}
 
       {/* INTERNATIONAL ATHLETE BOOKING ROUTES */}
       <Route path="/international-athlete-booking" element={<Layout><InternationalHome /></Layout>} />
