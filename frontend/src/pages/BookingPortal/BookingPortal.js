@@ -89,6 +89,11 @@ const BookingPortal = () => {
       <h4>MAG WAG Schedule</h4>
       <p>Competition Schedule MAG & WAG</p>
     </a>
+    <a href={CompetitionScedule} target="_blank" rel="noopener noreferrer" className="pdf-card">
+      <div className="pdf-icon">📑</div>
+      <h4>MAG Sub Divisions</h4>
+      <p></p>
+    </a>
   </div>
 </div>
 </div>
