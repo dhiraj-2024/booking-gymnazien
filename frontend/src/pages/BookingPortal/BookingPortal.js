@@ -5,6 +5,7 @@ import AccommodationInformation from '../../pdfs/Accommodation Information from 
 import JuniorAndSenior from '../../pdfs/Junior and Senior ART National Championship 2025 Pune, MAH.pdf';
 import PuneArtisticNationals from '../../pdfs/Pune Artistic Nationals OC Communication.pdf';
 import CompetitionScedule from '../../pdfs/Competition Schedule MAG & WAG - Pune 2025.pdf'
+import subdivision from '../../pdfs/MAG Sub Divisions.pdf'
 import './BookingPortal.css';
 
 
@@ -89,7 +90,7 @@ const BookingPortal = () => {
       <h4>MAG WAG Schedule</h4>
       <p>Competition Schedule MAG & WAG</p>
     </a>
-    <a href={CompetitionScedule} target="_blank" rel="noopener noreferrer" className="pdf-card">
+    <a href={subdivision} target="_blank" rel="noopener noreferrer" className="pdf-card">
       <div className="pdf-icon">📑</div>
       <h4>MAG Sub Divisions</h4>
       <p></p>
